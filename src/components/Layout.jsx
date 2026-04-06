@@ -24,7 +24,7 @@ const Layout = () => {
           right: '5%',
           width: '400px',
           height: '400px',
-          background: 'radial-gradient(circle, rgba(0, 210, 255, 0.03) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(255, 255, 255, 0.015) 0%, transparent 70%)',
           zIndex: -1,
           pointerEvents: 'none',
         }}
@@ -36,7 +36,7 @@ const Layout = () => {
           left: '10%',
           width: '300px',
           height: '300px',
-          background: 'radial-gradient(circle, rgba(157, 0, 255, 0.03) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(255, 255, 255, 0.012) 0%, transparent 70%)',
           zIndex: -1,
           pointerEvents: 'none',
         }}

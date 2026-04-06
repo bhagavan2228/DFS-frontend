@@ -1,19 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
 :root {
-  --neon-blue: #8ec5ff;
-  --neon-purple: #b39dff;
-  --neon-cyan: #9ce8ff;
-  --glass-surface: rgba(255, 255, 255, 0.1);
-  --glass-surface-strong: rgba(255, 255, 255, 0.15);
-  --glass-overlay: rgba(255, 255, 255, 0.2);
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --text-main: rgba(255, 255, 255, 0.88);
-  --text-muted: rgba(255, 255, 255, 0.55);
-  --bs-primary: #c9d8ff;
-  --bs-secondary: rgba(255, 255, 255, 0.65);
-  --bs-body-color: rgba(255, 255, 255, 0.88);
-  --bs-border-color: rgba(255, 255, 255, 0.15);
+  --glass-surface: rgba(11, 11, 15, 0.6);
+  --glass-surface-strong: rgba(0, 0, 0, 0.7);
+  --glass-overlay: rgba(168, 85, 247, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-border-hover: rgba(217, 70, 239, 0.35);
+  --glass-glow: rgba(168, 85, 247, 0.1);
+  --text-main: #FFFFFF;
+  --text-muted: #9CA3AF;
+  --bs-primary: #D946EF;
+  --bs-secondary: #A855F7;
+  --bs-body-color: #FFFFFF;
+  --bs-border-color: rgba(255, 255, 255, 0.1);
+  --accent: #D946EF;
+  --accent-glow: rgba(217, 70, 239, 0.3);
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 *,
@@ -30,38 +33,43 @@ body {
   color: var(--text-main);
   min-height: 100vh;
   overflow-x: hidden;
-  background:
-    radial-gradient(circle at 14% 16%, rgba(196, 132, 255, 0.4) 0%, rgba(196, 132, 255, 0) 34%),
-    radial-gradient(circle at 83% 20%, rgba(107, 159, 255, 0.42) 0%, rgba(107, 159, 255, 0) 36%),
-    radial-gradient(circle at 68% 84%, rgba(255, 126, 198, 0.36) 0%, rgba(255, 126, 198, 0) 38%),
-    linear-gradient(140deg, #090527 0%, #24165a 45%, #3e1b63 72%, #35124b 100%);
+  background: linear-gradient(135deg, #0B0B0F 0%, #000000 100%);
   background-attachment: fixed;
 }
 
+/* Ambient background orbs */
 body::before,
 body::after {
   content: "";
   position: fixed;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(120px);
   z-index: -2;
   pointer-events: none;
+  animation: orb-float 20s ease-in-out infinite alternate;
 }
 
 body::before {
-  width: 340px;
-  height: 340px;
-  left: -90px;
-  top: 18%;
-  background: rgba(113, 184, 255, 0.33);
+  width: 500px;
+  height: 500px;
+  left: -150px;
+  top: 10%;
+  background: rgba(168, 85, 247, 0.05);
 }
 
 body::after {
-  width: 380px;
-  height: 380px;
-  right: -120px;
-  bottom: 7%;
-  background: rgba(235, 139, 255, 0.3);
+  width: 550px;
+  height: 550px;
+  right: -180px;
+  bottom: 5%;
+  background: rgba(217, 70, 239, 0.04);
+  animation-delay: -10s;
+}
+
+@keyframes orb-float {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -20px) scale(1.05); }
+  100% { transform: translate(-10px, 15px) scale(0.98); }
 }
 
 #root,
@@ -69,29 +77,79 @@ body::after {
   min-height: 100vh;
 }
 
+/* ====================================
+   ADVANCED GLASSMORPHISM CARDS
+   ==================================== */
 .glass-card {
   background: var(--glass-surface);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
   border: 1px solid var(--glass-border);
   border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: all 0.4s var(--transition-smooth);
+  position: relative;
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(217, 70, 239, 0.1) 0%,
+    transparent 40%,
+    transparent 60%,
+    rgba(168, 85, 247, 0.05) 100%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s var(--transition-smooth);
+}
+
+.glass-card:hover {
+  background: rgba(15, 15, 20, 0.8);
+  border-color: var(--glass-border-hover);
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(168, 85, 247, 0.1),
+    inset 0 1px 0 rgba(217, 70, 239, 0.2);
+  transform: translateY(-4px);
+}
+
+.glass-card:hover::before {
+  opacity: 1;
 }
 
 .glass-panel {
   background: var(--glass-surface-strong);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(14px) saturate(170%);
+  -webkit-backdrop-filter: blur(14px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  position: relative;
 }
 
-.glass-card:hover {
-  background: rgba(255, 255, 255, 0.14);
+.glass-panel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  pointer-events: none;
 }
 
+/* ====================================
+   HOLOGRAPHIC SHIMMER EFFECT
+   ==================================== */
 .holographic {
   position: relative;
   overflow: hidden;
@@ -100,89 +158,155 @@ body::after {
 .holographic::after {
   content: "";
   position: absolute;
-  inset: -80%;
-  background: linear-gradient(55deg, transparent 48%, rgba(255, 255, 255, 0.1) 50%, transparent 54%);
+  inset: -100%;
+  background: linear-gradient(
+    55deg,
+    transparent 44%,
+    rgba(255, 255, 255, 0.06) 48%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.06) 52%,
+    transparent 56%
+  );
   transform: rotate(7deg);
   pointer-events: none;
+  animation: holo-sweep 6s ease-in-out infinite;
+}
+
+@keyframes holo-sweep {
+  0%, 100% { transform: translateX(-100%) rotate(7deg); }
+  50% { transform: translateX(100%) rotate(7deg); }
 }
 
 .neon-text {
-  text-shadow: 0 0 16px rgba(175, 214, 255, 0.4);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.15),
+               0 0 40px rgba(255, 255, 255, 0.05);
 }
 
+/* ====================================
+   BUTTONS — GLASS WITH HOVER GLOW
+   ==================================== */
 .btn-super-primary,
 .btn-primary,
 .btn-outline-primary,
 button:not(.btn-close):not(.forumx-icon-btn):not(.forumx-dropdown-item):not(.auth-submit-btn) {
-  background: rgba(255, 255, 255, 0.2) !important;
-  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  background: linear-gradient(135deg, rgba(217, 70, 239, 0.15), rgba(168, 85, 247, 0.12)) !important;
+  border: 1px solid rgba(217, 70, 239, 0.3) !important;
   color: #fff !important;
   border-radius: 999px !important;
-  box-shadow: 0 8px 22px rgba(17, 10, 34, 0.25);
-  transition: all 0.2s ease !important;
+  box-shadow:
+    0 5px 20px rgba(168, 85, 247, 0.15),
+    inset 0 1px 0 rgba(217, 70, 239, 0.2);
+  transition: all 0.35s var(--transition-smooth) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-super-primary::after,
+.btn-primary::after,
+.btn-outline-primary::after,
+button:not(.btn-close):not(.forumx-icon-btn):not(.forumx-dropdown-item):not(.auth-submit-btn)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(217, 70, 239, 0.3), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.35s var(--transition-smooth);
+  pointer-events: none;
 }
 
 .btn-super-primary:hover,
 .btn-primary:hover,
 .btn-outline-primary:hover,
 button:not(.btn-close):not(.forumx-icon-btn):not(.forumx-dropdown-item):not(.auth-submit-btn):hover {
-  background: rgba(255, 255, 255, 0.3) !important;
+  background: linear-gradient(135deg, rgba(217, 70, 239, 0.8), rgba(168, 85, 247, 0.8)) !important;
   border-color: rgba(255, 255, 255, 0.5) !important;
-  box-shadow: 0 0 24px rgba(206, 214, 255, 0.4), 0 12px 28px rgba(9, 8, 30, 0.25) !important;
+  box-shadow:
+    0 0 24px rgba(217, 70, 239, 0.4),
+    0 12px 32px rgba(168, 85, 247, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
   color: #fff !important;
+  transform: translateY(-2px);
 }
 
+.btn-super-primary:hover::after,
+.btn-primary:hover::after,
+.btn-outline-primary:hover::after,
+button:not(.btn-close):not(.forumx-icon-btn):not(.forumx-dropdown-item):not(.auth-submit-btn):hover::after {
+  opacity: 1;
+}
+
+.btn-super-primary:active,
+.btn-primary:active,
+.btn-outline-primary:active,
+button:not(.btn-close):not(.forumx-icon-btn):not(.forumx-dropdown-item):not(.auth-submit-btn):active {
+  transform: translateY(0) scale(0.98) !important;
+  transition-duration: 0.1s !important;
+}
+
+/* ====================================
+   FORM INPUTS — FROSTED GLASS
+   ==================================== */
 .apple-input,
 .form-control,
 .form-select,
 textarea.form-control {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background: rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
   color: #fff !important;
   border-radius: 12px !important;
+  transition: all 0.3s var(--transition-smooth);
+  backdrop-filter: blur(14px);
 }
 
 .apple-input::placeholder,
 .form-control::placeholder,
 .form-select::placeholder {
-  color: rgba(255, 255, 255, 0.4) !important;
+  color: rgba(255, 255, 255, 0.3) !important;
 }
 
 .apple-input:focus,
 .form-control:focus,
 .form-select:focus,
 textarea.form-control:focus {
-  border-color: rgba(255, 255, 255, 0.5) !important;
-  box-shadow: 0 0 0 0.22rem rgba(255, 255, 255, 0.22) !important;
-  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(217, 70, 239, 0.5) !important;
+  box-shadow:
+    0 0 0 3px rgba(168, 85, 247, 0.2),
+    0 0 20px rgba(217, 70, 239, 0.15) !important;
+  background: rgba(0, 0, 0, 0.6) !important;
 }
 
+/* ====================================
+   BOOTSTRAP OVERRIDES — GLASS
+   ==================================== */
 .card,
 .modal-content,
 .dropdown-menu,
 .toast,
 .toast-body {
   background: var(--glass-surface) !important;
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
   border: 1px solid var(--glass-border) !important;
   border-radius: 16px !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
   color: var(--text-main);
 }
 
 .modal-content {
-  background: rgba(255, 255, 255, 0.16) !important;
+  background: rgba(15, 15, 15, 0.9) !important;
+  backdrop-filter: blur(14px) saturate(180%) !important;
 }
 
 .badge {
-  border-color: rgba(255, 255, 255, 0.25) !important;
-  color: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
 }
 
 hr,
 .forumx-dropdown-divider {
-  border-color: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 .text-white,
@@ -194,29 +318,33 @@ hr,
 .text-secondary,
 .text-white-50,
 .text-tertiary {
-  color: rgba(255, 255, 255, 0.55) !important;
+  color: rgba(255, 255, 255, 0.45) !important;
 }
 
 .text-primary {
-  color: rgba(229, 237, 255, 0.95) !important;
+  color: var(--bs-primary) !important;
 }
 
 a {
-  color: rgba(232, 240, 255, 0.95);
+  color: rgba(255, 255, 255, 0.8);
+  transition: color 0.25s var(--transition-smooth);
 }
 
 a:hover {
   color: #fff;
 }
 
+/* ====================================
+   ANIMATIONS
+   ==================================== */
 .animate-fade-in {
-  animation: fadeIn 0.8s ease-out;
+  animation: fadeIn 0.7s var(--transition-smooth);
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -230,83 +358,95 @@ a:hover {
 }
 
 .neon-pulse {
-  animation: pulse-neon 2.1s infinite;
+  animation: pulse-neon 2.5s infinite;
 }
 
 @keyframes pulse-neon {
   0% {
-    box-shadow: 0 0 4px rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.05);
   }
   50% {
-    box-shadow: 0 0 22px rgba(212, 224, 255, 0.45);
+    box-shadow: 0 0 20px rgba(217, 70, 239, 0.2),
+                0 0 40px rgba(168, 85, 247, 0.1);
   }
   100% {
-    box-shadow: 0 0 4px rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.05);
   }
 }
 
 .decoding-text {
   display: inline-block;
   overflow: hidden;
-  border-right: 2px solid rgba(255, 255, 255, 0.5);
+  border-right: 2px solid rgba(255, 255, 255, 0.4);
   white-space: pre-wrap;
   animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
 }
 
 @keyframes typing {
-  from {
-    max-height: 0;
-  }
-  to {
-    max-height: 1000px;
-  }
+  from { max-height: 0; }
+  to { max-height: 1000px; }
 }
 
 @keyframes blink-caret {
-  from,
-  to {
-    border-color: transparent;
-  }
-  50% {
-    border-color: rgba(255, 255, 255, 0.5);
-  }
+  from, to { border-color: transparent; }
+  50% { border-color: rgba(255, 255, 255, 0.4); }
 }
 
+/* ====================================
+   NEURAL PANELS — ADVANCED GLASS
+   ==================================== */
 .neural-panel {
-  background: rgba(255, 255, 255, 0.12) !important;
+  background: rgba(0, 0, 0, 0.5) !important;
   border-radius: 20px !important;
-  border: 1px solid rgba(255, 255, 255, 0.22) !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
   overflow: hidden;
+  backdrop-filter: blur(14px) saturate(160%);
+  position: relative;
+}
+
+.neural-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+  pointer-events: none;
 }
 
 .neural-panel-header {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
   padding: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .signal-box {
-  background: rgba(255, 255, 255, 0.09);
-  border-left: 3px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid rgba(255, 255, 255, 0.2);
   padding: 1rem;
   border-radius: 8px;
+  transition: all 0.3s var(--transition-smooth);
+}
+
+.signal-box:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-left-color: rgba(255, 255, 255, 0.35);
 }
 
 .progress-bar-scanner {
   height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
   background-size: 200% 100%;
   animation: scan-progress 2s linear infinite;
 }
 
 @keyframes scan-progress {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 .animate-spin-slow {
@@ -314,33 +454,88 @@ a:hover {
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
+/* ====================================
+   SIDEBAR — GLASS NAV WITH HOVER GLOW
+   ==================================== */
 .sidebar-nav-item {
   background: transparent;
   border: 1px solid transparent;
+  transition: all 0.3s var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-nav-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 0 4px 4px 0;
+  transition: height 0.3s var(--transition-bounce);
 }
 
 .sidebar-nav-item:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: #fff !important;
+  transform: translateX(4px);
+}
+
+.sidebar-nav-item:hover::before {
+  height: 60%;
 }
 
 .sidebar-nav-active {
-  background: rgba(255, 255, 255, 0.24);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 0 20px rgba(206, 216, 255, 0.25);
+  background: rgba(217, 70, 239, 0.1);
+  border: 1px solid rgba(217, 70, 239, 0.3);
+  box-shadow:
+    0 5px 20px rgba(168, 85, 247, 0.15),
+    inset 0 1px 0 rgba(217, 70, 239, 0.2);
+}
+
+.sidebar-nav-active::before {
+  height: 60% !important;
+  background: rgba(255, 255, 255, 0.8) !important;
 }
 
 @media (min-width: 992px) {
   .layout-with-sidebar .layout-main {
     margin-left: 300px;
   }
+}
+
+/* ====================================
+   SCROLLBAR — MINIMAL GLASS
+   ==================================== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ====================================
+   SELECTION STYLE
+   ==================================== */
+::selection {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
 }

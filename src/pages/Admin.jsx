@@ -15,7 +15,7 @@ const Admin = () => {
             {/* Header */}
             <div className="d-flex align-items-center gap-4 mb-5">
                 <div className="d-flex align-items-center justify-content-center rounded-circle flex-shrink-0"
-                    style={{ width: '64px', height: '64px', background: 'rgba(0,210,255,0.1)', border: '1px solid var(--neon-blue)', boxShadow: '0 0 30px rgba(0,210,255,0.15)' }}>
+                    style={{ width: '64px', height: '64px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', boxShadow: '0 0 24px rgba(255,255,255,0.04)' }}>
                     <Shield size={32} className="text-primary neon-text" />
                 </div>
                 <div>

@@ -88,7 +88,7 @@ const CreateThread = () => {
       </div>
 
       <Card className="glass-panel p-0 overflow-hidden border-0">
-        <div style={{ height: '3px', background: 'linear-gradient(90deg, var(--neon-blue), var(--neon-purple))' }} />
+        <div style={{ height: '2px', background: 'linear-gradient(90deg, rgba(255,255,255,0.15), rgba(255,255,255,0.04))' }} />
         <Card.Body className="p-4 p-md-5">
           <div className="d-flex align-items-center gap-4 mb-4">
             <div
@@ -96,8 +96,8 @@ const CreateThread = () => {
               style={{
                 width: '56px',
                 height: '56px',
-                background: 'rgba(0, 210, 255, 0.1)',
-                border: '1px solid var(--neon-blue)',
+                background: 'rgba(255, 255, 255, 0.05)',
+                border: '1px solid rgba(255, 255, 255, 0.12)',
               }}
             >
               <Edit3 size={24} className="text-primary" />

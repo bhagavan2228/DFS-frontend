@@ -1,5 +1,6 @@
 /* ====================================
-   FORUMX HEADER
+   FORUMX HEADER — BLACK GLASS
+   Advanced Glassmorphism + Hover FX
    ==================================== */
 .forumx-header {
   position: sticky;
@@ -10,11 +11,13 @@
   justify-content: space-between;
   padding: 0 2rem;
   height: 60px;
-  background: rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  background: rgba(5, 5, 8, 0.85);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.6),
+    inset 0 -1px 0 rgba(168, 85, 247, 0.2);
 }
 
 /* Brand */
@@ -23,19 +26,35 @@
   align-items: center;
   gap: 0.6rem;
   text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.forumx-brand:hover {
+  transform: scale(1.03);
 }
 
 .forumx-logo-icon {
   width: 34px;
   height: 34px;
   border-radius: 9px;
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(217, 70, 239, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 8px 24px rgba(16, 8, 37, 0.22);
+  color: #D946EF;
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(217, 70, 239, 0.3);
+  transition: all 0.3s ease;
+}
+
+.forumx-brand:hover .forumx-logo-icon {
+  box-shadow:
+    0 0 16px rgba(217, 70, 239, 0.3),
+    0 4px 16px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: rgba(217, 70, 239, 0.6);
 }
 
 .forumx-brand-text {
@@ -47,8 +66,8 @@
 }
 
 .forumx-brand-x {
-  color: rgba(255, 255, 255, 0.95);
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.28);
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
 }
 
 /* Right section */
@@ -63,59 +82,80 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 0.82rem;
   font-weight: 600;
   text-decoration: none;
   padding: 0.4rem 0.9rem;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.2);
-  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.11);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   letter-spacing: 0.02em;
+  position: relative;
+  overflow: hidden;
+}
+
+.forumx-header-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .forumx-header-link:hover {
   color: white;
-  border-color: rgba(255, 255, 255, 0.55);
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 20px rgba(208, 217, 255, 0.35);
+  border-color: rgba(217, 70, 239, 0.4);
+  background: rgba(217, 70, 239, 0.15);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+  transform: translateY(-1px);
+}
+
+.forumx-header-link:hover::after {
+  opacity: 1;
 }
 
 .forumx-header-link-primary {
-  border-color: rgba(255, 255, 255, 0.45) !important;
-  color: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
 }
 
 .forumx-header-nav .forumx-nav-link {
   display: inline-flex;
   align-items: center;
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 0.82rem;
   font-weight: 600;
   text-decoration: none;
   padding: 0.35rem 0.75rem;
   border-radius: 8px;
-  transition: color 0.15s ease, background 0.15s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .forumx-header-nav .forumx-nav-link:hover {
   color: white;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
 }
 
+/* Notification panel — frosted dropdown */
 .forumx-notif-panel {
   position: absolute;
   top: calc(100% + 10px);
   right: 0;
   width: min(340px, 92vw);
-  background: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(10, 10, 15, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 14px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(16px) saturate(180%);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(217, 70, 239, 0.15);
+  backdrop-filter: blur(14px) saturate(160%);
   overflow: hidden;
-  animation: dropdown-in 0.15s ease;
+  animation: dropdown-in 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .forumx-notif-header {
@@ -123,13 +163,13 @@
   font-size: 0.8rem;
   font-weight: 700;
   color: white;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .forumx-notif-empty {
   padding: 1.25rem;
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.4);
   text-align: center;
 }
 
@@ -144,12 +184,17 @@
 .forumx-notif-list li {
   padding: 0.65rem 1rem;
   font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.85);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background 0.2s ease;
+}
+
+.forumx-notif-list li:hover {
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .forumx-notif-list li.read {
-  opacity: 0.55;
+  opacity: 0.45;
 }
 
 .forumx-notif-footer {
@@ -158,39 +203,47 @@
   padding: 0.65rem;
   font-size: 0.78rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.2s ease;
 }
 
 .forumx-notif-footer:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
   color: #fff;
 }
 
-/* Icon button */
+/* Icon button — glass circle with glow */
 .forumx-icon-btn {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.11);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.75);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
 }
 
 .forumx-icon-btn:hover {
   color: white;
-  border-color: rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 18px rgba(206, 216, 255, 0.35);
+  border-color: rgba(217, 70, 239, 0.5);
+  background: rgba(217, 70, 239, 0.15);
+  box-shadow: 0 0 18px rgba(168, 85, 247, 0.2);
+  transform: translateY(-2px) scale(1.08);
 }
 
-/* User menu */
+.forumx-icon-btn:active {
+  transform: translateY(0) scale(0.92);
+  transition-duration: 0.1s;
+}
+
+/* User menu — glass pill */
 .forumx-user-menu {
   display: flex;
   align-items: center;
@@ -199,23 +252,24 @@
   position: relative;
   padding: 0.35rem 0.75rem;
   border-radius: 30px;
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.11);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .forumx-user-menu:hover {
-  background: rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 0 18px rgba(204, 214, 255, 0.25);
+  background: rgba(217, 70, 239, 0.1);
+  border-color: rgba(217, 70, 239, 0.3);
+  box-shadow: 0 0 18px rgba(168, 85, 247, 0.15);
+  transform: translateY(-1px);
 }
 
 .forumx-avatar {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -228,35 +282,37 @@
 .forumx-username {
   font-size: 0.82rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .forumx-chevron {
-  color: rgba(255, 255, 255, 0.75);
-  transition: transform 0.2s ease;
+  color: rgba(255, 255, 255, 0.5);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .forumx-chevron.open {
   transform: rotate(180deg);
 }
 
-/* Dropdown */
+/* Dropdown — frosted glass */
 .forumx-dropdown {
   position: absolute;
   top: calc(100% + 10px);
   right: 0;
   min-width: 200px;
-  background: rgba(255, 255, 255, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(10, 10, 15, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 14px;
   padding: 0.5rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(16px) saturate(180%);
-  animation: dropdown-in 0.15s ease;
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(217, 70, 239, 0.15);
+  backdrop-filter: blur(14px) saturate(160%);
+  animation: dropdown-in 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 @keyframes dropdown-in {
-  from { opacity: 0; transform: translateY(-6px) scale(0.97); }
+  from { opacity: 0; transform: translateY(-8px) scale(0.96); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
@@ -273,12 +329,12 @@
 
 .forumx-dropdown-email {
   font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .forumx-dropdown-divider {
   height: 1px;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
   margin: 0.35rem 0;
 }
 
@@ -293,18 +349,19 @@
   border: none;
   font-size: 0.82rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   text-align: left;
 }
 
 .forumx-dropdown-item:hover {
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
   color: white;
+  transform: translateX(4px);
 }
 
 .forumx-dropdown-item.danger:hover {
-  background: rgba(255, 110, 140, 0.22);
-  color: #ffe9ef;
+  background: rgba(255, 80, 80, 0.12);
+  color: #ffccd2;
 }

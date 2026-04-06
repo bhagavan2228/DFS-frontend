@@ -30,7 +30,7 @@ const Discussions = () => {
   if (loading) {
     return (
       <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '50vh' }}>
-        <Spinner animation="grow" style={{ color: 'var(--neon-blue)' }} />
+        <Spinner animation="grow" style={{ color: 'rgba(255,255,255,0.6)' }} />
       </div>
     );
   }
@@ -98,7 +98,7 @@ const Discussions = () => {
                     </div>
                   </Col>
                   <Col xs={12} md={4} className="text-md-end mt-3 mt-md-0 d-flex justify-content-between justify-content-md-end align-items-center gap-3">
-                    <Badge bg="transparent" className="rounded-pill px-3 py-2 border text-white" style={{ borderColor: 'var(--neon-blue)' }}>
+                    <Badge bg="transparent" className="rounded-pill px-3 py-2 border text-white" style={{ borderColor: 'rgba(255,255,255,0.15)' }}>
                       {thread.replies ?? 0} {(thread.replies ?? 0) === 1 ? 'reply' : 'replies'}
                     </Badge>
                     <Link to={`/thread/${thread.id}`} className="btn btn-outline-primary rounded-circle p-2" style={{ width: '40px', height: '40px' }}>

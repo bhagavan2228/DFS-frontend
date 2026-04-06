@@ -34,7 +34,7 @@ const Posts = () => {
   if (loading) {
     return (
       <div className="d-flex justify-content-center py-5">
-        <Spinner animation="grow" style={{ color: 'var(--neon-blue)' }} />
+        <Spinner animation="grow" style={{ color: 'rgba(255,255,255,0.6)' }} />
       </div>
     );
   }

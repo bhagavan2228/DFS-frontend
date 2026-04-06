@@ -28,17 +28,17 @@ const Sidebar = () => {
                 left: '20px', 
                 top: '20px',
                 zIndex: 100,
-                border: '1px solid rgba(255, 255, 255, 0.2)'
+                border: '1px solid rgba(255, 255, 255, 0.08)'
             }}>
             
             <div className="sidebar-logo d-flex align-items-center gap-3 mb-4 px-2">
-                <div className="logo-box rounded-circle d-flex align-items-center justify-content-center" style={{ width: '32px', height: '32px', background: 'rgba(255,255,255,0.22)', border: '1px solid rgba(255,255,255,0.35)' }}>
+                <div className="logo-box rounded-circle d-flex align-items-center justify-content-center" style={{ width: '32px', height: '32px', background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)' }}>
                     <div className="rounded-circle" style={{ width: '12px', height: '12px', background: 'rgba(255,255,255,0.92)' }} />
                 </div>
                 <h4 className="mb-0 fw-bold tracking-tighter" style={{ fontSize: '1.4rem' }}>DFSx</h4>
             </div>
 
-            <div className="search-box glass-card p-2 mb-2 d-flex align-items-center gap-2" style={{ borderRadius: '12px', background: 'rgba(255,255,255,0.1)' }}>
+            <div className="search-box glass-card p-2 mb-2 d-flex align-items-center gap-2" style={{ borderRadius: '12px', background: 'rgba(255,255,255,0.04)' }}>
                 <Search size={16} className="text-tertiary ms-1" />
                 <input 
                     type="text" 
@@ -68,7 +68,7 @@ const Sidebar = () => {
 
             <div className="sidebar-footer pt-3 border-top border-white border-opacity-10">
                 <div className="d-flex align-items-center gap-3 px-2">
-                    <div className="rounded-circle d-flex align-items-center justify-content-center" style={{ width: '36px', height: '36px', background: 'rgba(255,255,255,0.2)', border: '1px solid rgba(255,255,255,0.35)' }}>
+                    <div className="rounded-circle d-flex align-items-center justify-content-center" style={{ width: '36px', height: '36px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}>
                         <User size={18} className="text-white" />
                     </div>
                     <div className="d-flex flex-column overflow-hidden">

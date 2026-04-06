@@ -122,7 +122,7 @@ const Thread = () => {
   if (loading) {
     return (
       <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '50vh' }}>
-        <Spinner animation="grow" style={{ color: 'var(--neon-blue)' }} />
+        <Spinner animation="grow" style={{ color: 'rgba(255,255,255,0.6)' }} />
       </div>
     );
   }
@@ -151,7 +151,7 @@ const Thread = () => {
           </Link>
 
           <Card className="glass-card mb-4 overflow-hidden border-0">
-            <div style={{ height: '3px', background: 'linear-gradient(90deg, var(--neon-blue), var(--neon-purple))' }} />
+            <div style={{ height: '2px', background: 'linear-gradient(90deg, rgba(255,255,255,0.15), rgba(255,255,255,0.04))' }} />
             <Card.Body className="p-4 p-md-5">
               <div className="d-flex justify-content-between align-items-start mb-4 flex-wrap gap-3">
                 <div>
@@ -223,7 +223,7 @@ const Thread = () => {
                   className="position-absolute start-0 top-0 bottom-0"
                   style={{
                     width: '3px',
-                    background: i % 2 === 0 ? 'var(--neon-blue)' : 'var(--neon-purple)',
+                    background: i % 2 === 0 ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.1)',
                   }}
                 />
                 <Card.Body className="p-4 ps-4">
