@@ -1,0 +1,346 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+:root {
+  --neon-blue: #8ec5ff;
+  --neon-purple: #b39dff;
+  --neon-cyan: #9ce8ff;
+  --glass-surface: rgba(255, 255, 255, 0.1);
+  --glass-surface-strong: rgba(255, 255, 255, 0.15);
+  --glass-overlay: rgba(255, 255, 255, 0.2);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --text-main: rgba(255, 255, 255, 0.88);
+  --text-muted: rgba(255, 255, 255, 0.55);
+  --bs-primary: #c9d8ff;
+  --bs-secondary: rgba(255, 255, 255, 0.65);
+  --bs-body-color: rgba(255, 255, 255, 0.88);
+  --bs-border-color: rgba(255, 255, 255, 0.15);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 14% 16%, rgba(196, 132, 255, 0.4) 0%, rgba(196, 132, 255, 0) 34%),
+    radial-gradient(circle at 83% 20%, rgba(107, 159, 255, 0.42) 0%, rgba(107, 159, 255, 0) 36%),
+    radial-gradient(circle at 68% 84%, rgba(255, 126, 198, 0.36) 0%, rgba(255, 126, 198, 0) 38%),
+    linear-gradient(140deg, #090527 0%, #24165a 45%, #3e1b63 72%, #35124b 100%);
+  background-attachment: fixed;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -2;
+  pointer-events: none;
+}
+
+body::before {
+  width: 340px;
+  height: 340px;
+  left: -90px;
+  top: 18%;
+  background: rgba(113, 184, 255, 0.33);
+}
+
+body::after {
+  width: 380px;
+  height: 380px;
+  right: -120px;
+  bottom: 7%;
+  background: rgba(235, 139, 255, 0.3);
+}
+
+#root,
+.app-main {
+  min-height: 100vh;
+}
+
+.glass-card {
+  background: var(--glass-surface);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.glass-panel {
+  background: var(--glass-surface-strong);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.holographic {
+  position: relative;
+  overflow: hidden;
+}
+
+.holographic::after {
+  content: "";
+  position: absolute;
+  inset: -80%;
+  background: linear-gradient(55deg, transparent 48%, rgba(255, 255, 255, 0.1) 50%, transparent 54%);
+  transform: rotate(7deg);
+  pointer-events: none;
+}
+
+.neon-text {
+  text-shadow: 0 0 16px rgba(175, 214, 255, 0.4);
+}
+
+.btn-super-primary,
+.btn-primary,
+.btn-outline-primary,
+button:not(.btn-close):not(.forumx-icon-btn):not(.forumx-dropdown-item):not(.auth-submit-btn) {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  color: #fff !important;
+  border-radius: 999px !important;
+  box-shadow: 0 8px 22px rgba(17, 10, 34, 0.25);
+  transition: all 0.2s ease !important;
+}
+
+.btn-super-primary:hover,
+.btn-primary:hover,
+.btn-outline-primary:hover,
+button:not(.btn-close):not(.forumx-icon-btn):not(.forumx-dropdown-item):not(.auth-submit-btn):hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 0 24px rgba(206, 214, 255, 0.4), 0 12px 28px rgba(9, 8, 30, 0.25) !important;
+  color: #fff !important;
+}
+
+.apple-input,
+.form-control,
+.form-select,
+textarea.form-control {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #fff !important;
+  border-radius: 12px !important;
+}
+
+.apple-input::placeholder,
+.form-control::placeholder,
+.form-select::placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.apple-input:focus,
+.form-control:focus,
+.form-select:focus,
+textarea.form-control:focus {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 0 0 0.22rem rgba(255, 255, 255, 0.22) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+.card,
+.modal-content,
+.dropdown-menu,
+.toast,
+.toast-body {
+  background: var(--glass-surface) !important;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+  color: var(--text-main);
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.16) !important;
+}
+
+.badge {
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+hr,
+.forumx-dropdown-divider {
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.text-white,
+.text-light {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+.text-muted,
+.text-secondary,
+.text-white-50,
+.text-tertiary {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+.text-primary {
+  color: rgba(229, 237, 255, 0.95) !important;
+}
+
+a {
+  color: rgba(232, 240, 255, 0.95);
+}
+
+a:hover {
+  color: #fff;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.terminal-font {
+  font-family: "Inter", sans-serif;
+  letter-spacing: -0.2px;
+}
+
+.neon-pulse {
+  animation: pulse-neon 2.1s infinite;
+}
+
+@keyframes pulse-neon {
+  0% {
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 22px rgba(212, 224, 255, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.15);
+  }
+}
+
+.decoding-text {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 2px solid rgba(255, 255, 255, 0.5);
+  white-space: pre-wrap;
+  animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    max-height: 0;
+  }
+  to {
+    max-height: 1000px;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.neural-panel {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+  overflow: hidden;
+}
+
+.neural-panel-header {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.signal-box {
+  background: rgba(255, 255, 255, 0.09);
+  border-left: 3px solid rgba(255, 255, 255, 0.35);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.progress-bar-scanner {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  background-size: 200% 100%;
+  animation: scan-progress 2s linear infinite;
+}
+
+@keyframes scan-progress {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.animate-spin-slow {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sidebar-nav-item {
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.sidebar-nav-item:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff !important;
+}
+
+.sidebar-nav-active {
+  background: rgba(255, 255, 255, 0.24);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 20px rgba(206, 216, 255, 0.25);
+}
+
+@media (min-width: 992px) {
+  .layout-with-sidebar .layout-main {
+    margin-left: 300px;
+  }
+}

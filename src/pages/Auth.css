@@ -1,0 +1,343 @@
+/* ====================================
+   FORUMX AUTH — FULL-SCREEN CYBERPUNK
+   ==================================== */
+
+/* Full-screen layout */
+.auth-fullscreen {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  overflow: hidden;
+  background: linear-gradient(140deg, #0b0631 0%, #27195e 48%, #3f1f6f 73%, #2c124e 100%);
+}
+
+/* Background: Animated cyberpunk gradient mimicking a night city */
+.auth-bg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 22% 68%, rgba(204, 129, 255, 0.5) 0%, transparent 56%),
+    radial-gradient(ellipse at 74% 25%, rgba(130, 172, 255, 0.45) 0%, transparent 52%),
+    radial-gradient(ellipse at 62% 100%, rgba(255, 141, 209, 0.28) 0%, transparent 62%);
+  background-size: 100% 100%;
+}
+
+/* Animated aurora lines */
+.auth-bg-overlay::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 120%;
+  height: 60%;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+    linear-gradient(225deg, rgba(214, 174, 255, 0.12) 0%, transparent 50%),
+    linear-gradient(90deg, rgba(167, 205, 255, 0.12) 0%, transparent 100%);
+  animation: aurora-drift 12s ease-in-out infinite alternate;
+  border-radius: 100%;
+}
+
+/* City skyline silhouette at bottom via pseudo-element */
+.auth-bg-overlay::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background:
+    linear-gradient(0deg, rgba(42, 21, 73, 0.5) 0%, transparent 100%);
+  /* Neon glow dots mimicking window lights */
+  box-shadow:
+    inset 0 0 80px rgba(187, 207, 255, 0.16),
+    0 0 60px rgba(217, 166, 255, 0.16);
+}
+
+@keyframes aurora-drift {
+  0% { transform: translateX(-5%) translateY(0%) scale(1); opacity: 0.6; }
+  100% { transform: translateX(5%) translateY(-5%) scale(1.1); opacity: 1; }
+}
+
+/* Neon grid lines effect */
+.auth-fullscreen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: 
+    linear-gradient(rgba(0, 210, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 210, 255, 0.015) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ====================================
+   TOP LOGO
+   ==================================== */
+.auth-top-logo {
+  position: absolute;
+  top: 2.5rem;
+  left: 3rem;
+  z-index: 20;
+}
+
+.auth-logo-text {
+  font-family: "Inter", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 0.05em;
+}
+
+.auth-logo-x {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ====================================
+   LEFT PANEL — HERO CONTENT
+   ==================================== */
+.auth-left-panel {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  padding: 5rem 4rem;
+}
+
+.auth-hero-content {
+  max-width: 520px;
+}
+
+.auth-hero-title {
+  font-family: "Inter", sans-serif;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 800;
+  color: white;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 80px rgba(210, 219, 255, 0.24);
+}
+
+.auth-hero-sub {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  font-family: "Inter", sans-serif;
+}
+
+.auth-icon-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.auth-icon-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.auth-icon-btn:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.26);
+  box-shadow: 0 0 20px rgba(203, 213, 255, 0.35);
+  transform: translateY(-2px);
+}
+
+/* ====================================
+   RIGHT PANEL — FORM CARD
+   ==================================== */
+.auth-right-panel {
+  position: relative;
+  z-index: 10;
+  width: 460px;
+  min-width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.14);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: -14px 0 44px rgba(0, 0, 0, 0.2);
+}
+
+.auth-form-card {
+  width: 100%;
+  max-width: 380px;
+}
+
+.auth-form-header {
+  margin-bottom: 2.5rem;
+}
+
+.auth-form-title {
+  font-family: "Inter", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.02em;
+}
+
+.auth-form-sub {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* Form inputs */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.auth-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.auth-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.auth-input {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 12px !important;
+  color: white !important;
+  padding: 0.85rem 1rem !important;
+  font-size: 0.9rem !important;
+  font-family: "Inter", sans-serif;
+  outline: none;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.auth-input::placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.auth-input:focus {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Submit button */
+.auth-submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 12px;
+  color: white;
+  font-weight: 700;
+  font-size: 0.9rem;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+  box-shadow: 0 8px 24px rgba(16, 8, 36, 0.24);
+  letter-spacing: 0.02em;
+}
+
+.auth-submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 28px rgba(206, 215, 255, 0.4);
+}
+
+.auth-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Loading ring */
+.auth-loading-ring {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  display: inline-block;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Switch link */
+.auth-switch-text {
+  text-align: center;
+  margin-top: 2rem;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.85rem;
+}
+
+.auth-switch-link {
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 0.25rem;
+  transition: opacity 0.2s;
+}
+
+.auth-switch-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* ====================================
+   RESPONSIVE
+   ==================================== */
+@media (max-width: 768px) {
+  .auth-fullscreen {
+    flex-direction: column;
+  }
+
+  .auth-left-panel {
+    padding: 7rem 2rem 2rem;
+    flex: none;
+    min-height: 40vh;
+  }
+
+  .auth-hero-title {
+    font-size: 3rem;
+  }
+
+  .auth-right-panel {
+    width: 100%;
+    min-width: unset;
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 2.5rem 1.5rem;
+    justify-content: flex-start;
+  }
+}
