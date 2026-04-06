@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Shield, LogOut, MessageSquare, Bell, ChevronDown, FileText } from 'lucide-react';
+import { Shield, LogOut, MessageSquare, Bell, ChevronDown, FileText, Moon, Sun } from 'lucide-react';
 import api from '../services/api';
+import { useTheme } from '../context/ThemeContext.jsx';
 import './Header.css';
 
 const Header = () => {
   const { user, logout } = useAuth();
+  const { isDark, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [notifOpen, setNotifOpen] = useState(false);
@@ -77,6 +79,15 @@ const Header = () => {
       </div>
 
       <div className="forumx-header-right">
+        <button
+          type="button"
+          className="forumx-icon-btn"
+          title={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+          onClick={toggleTheme}
+        >
+          {isDark ? <Sun size={18} /> : <Moon size={18} />}
+        </button>
+
         {!user && (
           <>
             <Link to="/login" className="forumx-header-link">

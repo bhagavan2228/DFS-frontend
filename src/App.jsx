@@ -17,8 +17,11 @@ import SavedPosts from './pages/SavedPosts';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProtectedRoute from './components/ProtectedRoute';
+import { useTheme } from './context/ThemeContext.jsx';
 
 function App() {
+  const { theme } = useTheme();
+
   return (
     <div className="app-main min-vh-100 d-flex flex-column">
       <Header />
@@ -56,7 +59,7 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="dark"
+        theme={theme}
       />
     </div>
   );

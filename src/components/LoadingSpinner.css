@@ -13,13 +13,13 @@
 }
 
 .spinner {
-  border: 3px solid rgba(217, 70, 239, 0.15);
-  border-top: 3px solid #D946EF;
+  border: 3px solid color-mix(in srgb, var(--accent) 18%, transparent);
+  border-top: 3px solid var(--accent);
   border-radius: 50%;
   width: 40px;
   height: 40px;
   animation: spin 0.9s linear infinite;
-  box-shadow: 0 0 16px rgba(168, 85, 247, 0.3);
+  box-shadow: 0 0 16px var(--accent-glow);
 }
 
 @keyframes spin {
@@ -29,7 +29,7 @@
 
 .spinner-container p {
   margin-top: 15px;
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--text-muted);
   font-size: 0.85rem;
   letter-spacing: 0.02em;
 }
