@@ -76,10 +76,36 @@ const Thread = () => {
       toast.info('Sign in to like replies.');
       return;
     }
+
+    // Capture previous state for rollback
+    const previousReplies = [...replies];
+
+    // Optimistic Update
+    setReplies((prev) =>
+      prev.map((r) => {
+        if (r.id === replyId) {
+          const isLiked = r.isLiked; // Tracking locally
+          return {
+            ...r,
+            likes: (r.likes ?? 0) + (isLiked ? -1 : 1),
+            isLiked: !isLiked,
+          };
+        }
+        return r;
+      })
+    );
+
     try {
       const res = await api.post(`/replies/${replyId}/like`);
-      setReplies((prev) => prev.map((r) => (r.id === replyId ? { ...r, likes: res.data.likes } : r)));
-    } catch {
+      // Sync with server response
+      setReplies((prev) =>
+        prev.map((r) =>
+          r.id === replyId ? { ...r, likes: res.data.likes, isLiked: res.data.liked } : r
+        )
+      );
+    } catch (error) {
+      // Rollback on failure
+      setReplies(previousReplies);
       toast.error('Could not update like.');
     }
   };
@@ -239,13 +265,13 @@ const Thread = () => {
                         </Button>
                       )}
                       <Button
-                        variant="outline-primary"
+                        variant={reply.isLiked ? 'primary' : 'outline-primary'}
                         size="sm"
                         className="rounded-pill"
                         onClick={() => handleLike(reply.id)}
                         disabled={!user}
                       >
-                        <ThumbsUp size={12} className="me-1" />
+                        <ThumbsUp size={12} className={`me-1 ${reply.isLiked ? 'text-white' : ''}`} />
                         {reply.likes ?? 0}
                       </Button>
                     </div>
